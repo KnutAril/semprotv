@@ -36,4 +36,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
+    public function login($username, $password)
+    {
+        $user = DB::table('users')->where('username', '=', $username)->where('password', '=', $password)->first();
+
+        if (count($user)==1)
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
