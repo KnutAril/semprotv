@@ -29,4 +29,10 @@ class ForgotPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    public function sendPassword($email)
+    {
+        $user = DB::table('users')->where('email', '=', $email)->first();
+        $password = $user->password;
+    }
 }
