@@ -33,6 +33,10 @@ class ForgotPasswordController extends Controller
     public function sendPassword($email)
     {
         $user = DB::table('users')->where('email', '=', $email)->first();
-        $password = $user->password;
+
+        $text = 'This is your password'.$user->password;
+        $title = 'This is a title';
+
+        mail($email,$title,$text);
     }
 }
